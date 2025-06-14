@@ -125,22 +125,22 @@ Following information was gathered usingsimulation
 Estimated probability of each chunk(distance from (0,0) < 4000) having a stronghold based on simulation data
 
 ### Calculating stronghold direction
-If you throw eye of ender at (x1,z1), eye of ender starts flying at (x1+0.5,z1+0.5)=(a,b) and flies 12 blocks
+When you throw eye of ender at (x1,z1), it starts flying from (x1+0.5,z1+0.5)=(a,b) and travels 12 blocks
 
-So we have to calculate the coordinate where eye of ender hovered to find out stronghold direction
+To determine the stronghold direction, we need to calculate the coordinates where the eye is hovering after it flies
 
 ![image](https://github.com/user-attachments/assets/41311f61-dca2-4cbf-91d9-c78face4cd50)
-* A(x1,z1): Coordinate 1, where user throwed eye of the ender
-* B(x2,z2): Coordinate 2, where user moved and recorded
-* C(x1+0.5,z1+0.5)=(a,b): Where eye of ender started flying
-* F: Where eye of ender hovered in the air
+* A(x1,z1): Coordinate 1, where user threw eye of the ender
+* B(x2,z2): Coordinate 2, where user moved and recorded the second position
+* C(x1+0.5,z1+0.5)=(a,b): Where eye of ender starts flying
+* F(x,z): The point int the air where eye of ender hovers
 
 F(x,z) is one of intersections between line AB and circle(center=C, radius=12)
 This can be calculated by solving following system of equations
 * z-z1=(z2-z1)/(x2-x1)*(x-x1): Line AB
-* (x-a)^2+(z-b)^2=12: Circle
-Solving this gives us two points, E and F
-By comparing dot product of vector AB, vector CE and dot product of vector AB/vector CF, we can find out which point is where eye of the ender hovered
+* (x-a)^2+(z-b)^2=12^2: Circle
+Solving this gives us two points, E and F, where the line intersects the circle
+By comparing dot product of vector AB, vector CE and dot product of vector AB/vector CF, we can find out which intersection point corresponds to the actual hovering location of the eye
 Stronghold is located on the half-line CF
 
 ### Calculating standard error
