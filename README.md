@@ -45,7 +45,7 @@ Stronghold location calculator for Minecraft Bedrock Edition
 ![이미지_2025-06-14_104357482 (2)](https://github.com/user-attachments/assets/5cfe22f3-b4e5-465d-91c4-99acb6891ae7)
 * Look Down straightly and allign your crosshair to edge of the block
 * Select whether your crosshair is facing X or Z direction
-* Count and write how many (Minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example
+* Count and write how many (minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example
   - This value should be within 0 and 8
 * Press "ADD" button and probabilities will be updated
 
@@ -54,7 +54,7 @@ Stronghold location calculator for Minecraft Bedrock Edition
 * Set this value based on how accurate you are in alligning crosshair with eye of ender.
   - Smaller value → Assumes accurate crosshair allignment → More confident prediction
   - Bigger value → Assumes less accurate crosshair allignment → Less confident prediction
-* General tip
+* Tip
   - 0.03(Minimum): You can allign crosshair (monitor) pixel perfect always
   - 0.3(Default): You can allign crosshair (minecraft) pixel perfect
   - 1: You can allign crosshair within center third of the ender eye
@@ -65,6 +65,19 @@ Stronghold location calculator for Minecraft Bedrock Edition
 * Set this value based on how accurate you can measure how many (minecraft) pixel the crosshair is from the vortex.
   - Smaller value → Assumes accurate measurement → More confident prediction
   - Bigger value → Assumes less accurate measurement → Less confident prediction
-* General tip
+* Tip
   - 0.01(Minimum): You can count (monitor) pixels accurately and write the value
-  - 
+  - 0.03: You can count (minecraft) pixels and round to 1 decimal point
+  - 0.3(Maximum): You can count (minecraft) pixels and round to nearest integer
+
+#### Input Mode
+* Coord+Coord
+  - Recommeneded if surrounding terrain is flat
+  - Generally more accurate than Corner+Facing
+* Corner+Facing
+  - Recommended if surrounding terrain is irregular
+ 
+#### Prob Within
+* Display probability that stronghold is within N chunks from candidate chunk
+* This is supported because in Bedrock Edition, most near stronghold generate under the village. If you can find village in render distance, you can easily locate stronghold with Sprinkz strategy
+* Recommended to set this value according to your render distance
