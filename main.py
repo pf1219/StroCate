@@ -66,7 +66,7 @@ def rgb_to_hex(r, g, b):
 
 # Window
 win=tk.Tk()
-win.title("/StroCate v1.0 (LHS1219)")
+win.title("/StroCate v1.1 (LHS1219)")
 win.geometry("400x340+0+100")
 win.resizable(False,False)
 win.attributes("-topmost",True)
@@ -375,9 +375,13 @@ def update():
         xeye2=(-1*denom1**0.5+denom2)/nom
         zeye1=p*xeye1+q
         zeye2=p*xeye2+q
-        dist1=(xeye1-x2)**2+(zeye1-z2)**2
-        dist2=(xeye2-x2)**2+(zeye2-z2)**2
-        if dist1<dist2:
+
+        dir_vec=(x2-x1,z2-z1)
+        vec1=(xeye1-a,zeye1-b)
+        vec2=(xeye2-a,zeye2-b)
+        cos1=dir_vec[0]*vec1[0]+dir_vec[1]*vec1[1]
+        cos2=dir_vec[0]*vec2[0]+dir_vec[1]*vec2[1]
+        if cos1>cos2:
             xeye=xeye1
             zeye=zeye1
         else:
