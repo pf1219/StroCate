@@ -15,6 +15,14 @@ Stronghold location calculator for Minecraft Bedrock Edition
   - You can find this option in Settings → General → Creator → Creator Settings → Enable Copy Coordinate UI
 
 ### Eye Allginment
+Information in this section is by TyGer. (https://www.youtube.com/@tyger2k)
+Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
+
+![image](https://github.com/user-attachments/assets/c0b2e424-1f80-4423-bab7-6d209191a3bc)
+* Standard eye allginment
+
+![image](https://github.com/user-attachments/assets/d7e220e3-fbea-4911-8d82-cd0a2ba29577)
+* Allgin this (monitor) pixel in the crosshair to the right of the center (minecraft) pixel of the eye of ender
 
 ### Input
 #### Coord+Coord
