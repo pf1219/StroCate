@@ -2,7 +2,7 @@
 Stronghold location calculator for Minecraft Bedrock Edition
 
 ## Features
-* Calculates probability of each chunk (distance from (0,0) < 4000) having stronghold
+* Calculates probability of each chunk (distance from (0,0) < 4000) having a stronghold
 * Uses prior probability using information about how strongholds generate in Bedrock Edition
 * Updates probability based on measurement using Bayes' theorem
 * Users can customize standard measurement error according to how accurate you are in measuring eye
@@ -51,7 +51,7 @@ Stronghold location calculator for Minecraft Bedrock Edition
 
 ### Settings
 #### Allign Error
-* Set this value based on how accurate you are in alligning crosshair accurately
+* Set this value based on how accurate you are in alligning crosshair with eye of ender.
   - Smaller value → Assumes accurate crosshair allignment → More confident prediction
   - Bigger value → Assumes less accurate crosshair allignment → Less confident prediction
 * General tip
@@ -66,5 +66,5 @@ Stronghold location calculator for Minecraft Bedrock Edition
   - Smaller value → Assumes accurate measurement → More confident prediction
   - Bigger value → Assumes less accurate measurement → Less confident prediction
 * General tip
-  - 0.01(Minimum): You can count (monitor) pixels and write the value
+  - 0.01(Minimum): You can count (monitor) pixels accurately and write the value
   - 
