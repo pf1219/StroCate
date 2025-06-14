@@ -66,7 +66,7 @@ def rgb_to_hex(r, g, b):
 
 # Window
 win=tk.Tk()
-win.title("/StroCate v1.2 (LHS1219)")
+win.title("/StroCate v1.3 (LHS1219)")
 win.geometry("400x340+0+100")
 win.resizable(False,False)
 win.attributes("-topmost",True)
@@ -76,7 +76,7 @@ ft2=font.Font(family="Malgun Gothic",size=10,underline=True)
 win.option_add("*Font",ft)
 
 # Accuracy setting
-acc_dis=tk.Label(win,text="Allign Error")
+acc_dis=tk.Label(win,text="Align Error")
 acc_dis.place(x=55,y=11,anchor=tk.CENTER)
 acc_list=[0.03,0.05,0.075,0.1,0.2,0.3,0.4,0.5,0.75,1,1.5,2,4]
 acc_set=ttk.Combobox(win,values=acc_list,width=6,state="readonly")
