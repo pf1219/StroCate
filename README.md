@@ -41,7 +41,7 @@ Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
 #### Corner+Facing
 * Surround yourself with 4 blocks
 * Throw eye of ender and stand at the corner in that direction
-* Allign crosshair
+* Align crosshair
     - For more accurate measurement, use low FOV(30°) and/or low camera sensitivity(0%)
       
 ![image](https://github.com/user-attachments/assets/66b8774d-bf5c-489b-8ebc-5132ef9cf707)
@@ -51,22 +51,22 @@ Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
   - You can find this option in Setting → Controls → Keyboard & Mouse
 
 ![이미지_2025-06-14_104357482 (2)](https://github.com/user-attachments/assets/5cfe22f3-b4e5-465d-91c4-99acb6891ae7)
-* Look Down straightly and allign your crosshair to edge of the block
+* Look Down straightly and align your crosshair to edge of the block
 * Select whether your crosshair is facing X or Z direction
 * Count and write how many (minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example
   - This value should be within 0 and 8
 * Press "ADD" button and probabilities will be updated
 
 ### Settings
-#### Allign Error
-* Set this value based on how accurate you are in alligning crosshair with eye of ender.
-  - Smaller value → Assumes accurate crosshair allignment → More confident prediction
-  - Bigger value → Assumes less accurate crosshair allignment → Less confident prediction
+#### Align Error
+* Set this value based on how accurate you are in aligning crosshair with eye of ender.
+  - Smaller value → Assumes accurate crosshair alignment → More confident prediction
+  - Bigger value → Assumes less accurate crosshair alignment → Less confident prediction
 * Tip
-  - 0.03(Minimum): You can allign crosshair (monitor) pixel perfect always
-  - 0.3(Default): You can allign crosshair (minecraft) pixel perfect
-  - 1: You can allign crosshair within center third of the ender eye
-  - 4(Maximum): You can allign crosshair within ender eye
+  - 0.03(Minimum): You can align crosshair (monitor) pixel perfect always
+  - 0.3(Default): You can align crosshair (minecraft) pixel perfect
+  - 1: You can align crosshair within center third of the ender eye
+  - 4(Maximum): You can align crosshair within ender eye
 
 #### Pixel Error
 * This setting matters only if your input mode is "Corner+Facing"
@@ -95,7 +95,7 @@ If calculator said 100% probability but stronghold wasn't there, consider..,
 * You were obstructed by terrain while measuring direction with "Coord+Coord" input method
 * Nearest stronghold was more than 4000 blocks away from (0,0)
 * Each eye directed diffrent stronghold
-* You set too low value in "allign errror" or "pixel error" (=Your measurement were not accurate enough)
+* You set too low value in "align errror" or "pixel error" (=Your measurement were not accurate enough)
 
 ## Methodology
 ### Calculating prior probability
@@ -140,39 +140,41 @@ This can be calculated by solving following system of equations
 * z-z1=(z2-z1)/(x2-x1)*(x-x1): Line AB
 * (x-a)^2+(z-b)^2=12^2: Circle
 Solving this gives us two points, E and F, where the line intersects the circle
+
 By comparing dot product of vector AB, vector CE and dot product of vector AB/vector CF, we can find out which intersection point corresponds to the actual hovering location of the eye
+
 Stronghold is located on the half-line CF
 
 ### Calculating standard error
-Program assumes 2 kinds of error affects prediction
-* Measurement error(σ1): How accurately user alligned crosshair
-  - This is affected by user defined "Allign error"(ε1)
-  - This is estimated σ1=arctan(ε1/12/16) (12: Distance eye flies, 16: Number of pixels in a block)
+Program assumes 2 types of error affect the prediction
+* Measurement error(σ1): How accurately user aligned crosshair
+  - This is affected by user defined "Align error"(ε1)
+  - Estimated using: σ1=arctan(ε1/12/16) (12: Distance eye flies, 16: Number of pixels in a block)
 * Precision error(σ2): How precisely the direction is measured
   - In "Coord+Coord" mode, this is affected by distance between Coordinate 1 and Coordinate 2
-  - This is estimated σ2=arctan(0.01*sqrt(2)/distance)*0.2
+  - Estimated using σ2=arctan(0.01*sqrt(2)/distance)*0.2
   - In "Corner+Facing" mode, this is affected by user defined "Pixel error"(ε1)
-  - This is estimated σ2=arctan(ε1/16/0.3) (0.3: Distance between the player and block which player is facing)
+  - Estimated using σ2=arctan(ε1/16/0.3) (0.3: Distance between the player and block which player is facing)
 * Combined error(σ) is calculated σ=sqrt(σ1^2+σ2^2)
 
 ### Updating probability
-The posterior probability is proportional to the product of prior probability and likelihood
+The posterior probability is proportional to the product of prior probability and the likelihood
 * Posterior probability: The probability that a certain chunk contains the stronghold afte the new observation
 * Prior probability: The probability that a certain chunk contains the stronghold before considering the new observation
 * Likelihood: The probability of making the observation if the stronghold were located in that chunk
 
-In normal distribution with mean(μ) and standard deviation(σ), the probability density function is
+For normal distribution with mean(μ) and standard deviation(σ), the probability density function(PDF) is
 
 ![image](https://github.com/user-attachments/assets/6dfeba82-db9d-4b86-8060-6d7ee3e7dc6b)
 
 ![image](https://github.com/user-attachments/assets/4b4bbb81-6e7d-40bf-b3d3-8a491d815e09)
 
-Probability density function at x=A means relative likelihood of A getting sampled from this distribution
+The value of PDF at x=A represents relative likelihood of observing value A from this distribution
 
-If observed angle is θ and eye of ender started flying at C(a,b), likelihood in each chunk is calculated
+If observed angle is θ and the eye of ender started flying from point C(a,b), for each chunk, the likelihood is calculated
 * Eye of ender points to (2,2) of stronghold chunk
-* If (2,2) of certain chunk is Sn(xn,zn), we can calculate direction of vector CSn=(xn-a,zn-b)
-* Calculate difference between two angles, Δθ
-* Likelihood is value of probability density function at x=Δθ, given μ=0, σ=combined error
+* Compute the direction vector from the eye's start point to the (2,2) of the chunk, vector CSn=(xn-a,zn-b)
+* Calculate the angle(Δθ) between eye's observed direction and expected direction to the chunk
+* Likelihood is value of PDF at x=Δθ, given μ=0, σ=combined error
 
-After iterating this process through all candidate chunks, probability is normalized so that it sum up to 1
+After calculating unnormalized probabilities for all candidate chunks, normalize them so that total probability sums up to 1
