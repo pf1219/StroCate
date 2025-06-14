@@ -2,9 +2,54 @@
 Stronghold location calculator for Minecraft Bedrock Edition
 
 ## Features
-* Calculates probability of each chunk (distance from (0,0) < 4000) having stronghold.
-* Uses prior probability using information about how strongholds generate in Bedrock Edition.
-  - Considers village grid, village stronghold generation, scattered stronghold generation
-* Updates probability based on measurement using Bayes' theorem.
-* Users can customize standard measurement error according to how accurate they are in measuring eye.
-* Two input method available.
+* Calculates probability of each chunk (distance from (0,0) < 4000) having stronghold
+* Uses prior probability using information about how strongholds generate in Bedrock Edition
+* Updates probability based on measurement using Bayes' theorem
+* Users can customize standard measurement error according to how accurate they are in measuring eye
+* Two input method available
+
+## How to Use
+### Game Setting
+* "Enable Copy Coordinate UI" should be enabled in advance
+  - You can find this option in Settings → General → Creator → Creator Settings → Enable Copy Coordinate UI
+
+### Eye Allginment
+Information in this section is by TyGer. (https://www.youtube.com/@tyger2k)
+Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
+
+![image](https://github.com/user-attachments/assets/c0b2e424-1f80-4423-bab7-6d209191a3bc)
+* Standard eye allginment
+
+![image](https://github.com/user-attachments/assets/d7e220e3-fbea-4911-8d82-cd0a2ba29577)
+* Allgin this (monitor) pixel in the crosshair to the right of the center (minecraft) pixel of the eye of ender
+
+### Input
+#### Coord+Coord
+* Stand on the relatively flat area
+* Throw eye of ender and allign crosshair
+  - For more accurate measurement, use low FOV(30°) and/or low camera sensitivity(0%)
+ 
+![image](https://github.com/user-attachments/assets/560213de-383a-49ad-9e6b-70c1d547045e)
+* Copy coordinate and press "PASTE" button next to "Coord 1"
+* Move forward. Make sure your direction doesn't change due to surrounding terrain 
+  - Moving more distance does make prediction accurate, but not being obstructed by terrain is much more important
+  - Moving 5 blocks would cause 0.03° standard error and moving more than 16 blocks would ensure standard error smaller than 0.01°
+* Copy coordinate and press "PASTE" button next to "Coord 2"
+* Press "ADD" button and probabilities will be updated
+
+#### Coord+Facing
+* Surround yourself with 4 blocks
+* Throw eye of ender and stand at the corner in that direction
+* Allign crosshair
+    - For more accurate measurement, use low FOV(30°) and/or low camera sensitivity(0%)
+      
+![image](https://github.com/user-attachments/assets/66b8774d-bf5c-489b-8ebc-5132ef9cf707)
+* Copy coordinate and press "PASTE" button next to "Coord 1"
+  - Your both X and Z coordinate should end with either 0.30 or 0.70
+* Enable "Full Keyboard Gameplay" and set "Smooth Roatation Speed" to minimum(1)
+  - You can find this option in Setting → Controls → Keyboard & Mouse
+
+![이미지_2025-06-14_104357482 (2)](https://github.com/user-attachments/assets/5cfe22f3-b4e5-465d-91c4-99acb6891ae7)
+* Look Down straightly and allign your crosshair to edge of the block
+* Select whether your crosshair is facing X or Z direction
+* Count and write how many (Minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example.
