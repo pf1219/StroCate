@@ -66,7 +66,7 @@ def rgb_to_hex(r, g, b):
 
 # Window
 win=tk.Tk()
-win.title("/StroCate v1.1 (LHS1219)")
+win.title("/StroCate v1.2 (LHS1219)")
 win.geometry("400x340+0+100")
 win.resizable(False,False)
 win.attributes("-topmost",True)
@@ -133,7 +133,7 @@ pc_set.place(x=330,y=35,anchor=tk.CENTER)
 # Precision setting
 pre_dis=tk.Label(win,text="Pixel Error")
 pre_dis.place(x=135,y=11,anchor=tk.CENTER)
-prec_inp=ttk.Combobox(win,values=["0.01","0.025","0.05","0.075","0.1","0.15","0.2","0.25","0.3"],width=6,state="readonly")
+prec_inp=ttk.Combobox(win,values=["0.01","0.03","0.05","0.075","0.1","0.15","0.2","0.3"],width=6,state="readonly")
 prec_inp.set("0.25")
 prec_inp.place(x=135,y=35,anchor=tk.CENTER)
 
@@ -357,9 +357,9 @@ def update():
         dist=((x1-x2)**2+(z1-z2)**2)**0.5
         error_angle=math.tan(pt_err[iteration]/12/16)
         if pt_mode[iteration]==mode_list[1]:
-            error_precision=math.atan(0.01/2*2*math.sqrt(2)/dist)*0.3
+            error_precision=math.atan(0.01*math.sqrt(2)/dist)*0.2
         else:
-            error_precision=math.atan(pt_prec[iteration]/16/0.3)*0.5
+            error_precision=math.atan(pt_prec[iteration]/16/0.3)
         error_combine=(error_angle**2+error_precision**2)**0.5
         
         a=x1+0.5
