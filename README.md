@@ -108,7 +108,7 @@ Simulated Bedrock Edition stronghold generation multiple times considering
 * Scattered stronghold grid
   - Grid size is 200 chunks in x/z direction
   - Stronghold can generate in chunk 50~150 in each grid
-  - There;s 25% chance of stronghold generating in each grid
+  - There's 25% chance of stronghold generating in each grid
 * Village stronghold generation
   - Simulated village stronghold generation based on Bedrockified by Earthcomputer
   - https://github.com/Earthcomputer/bedrockified/blob/master/src/main/java/net/earthcomputer/bedrockified/BedrockStrongholdStructure.java
@@ -124,4 +124,33 @@ Following information was gathered usingsimulation
   - X axis: Distance from (0,0) in chunks, Y axis: Relative probability of chunk having a scattered stronghold
 Estimated probability of each chunk(distance from (0,0) < 4000) having a stronghold based on simulation data
 
+### Calculating stronghold direction
+If you throw eye of ender at (x1,z1), eye of ender starts flying at (x1+0.5,z1+0.5)=(a,b) and flies 12 blocks
 
+So we have to calculate the coordinate where eye of ender hovered to find out stronghold direction
+
+![image](https://github.com/user-attachments/assets/41311f61-dca2-4cbf-91d9-c78face4cd50)
+* A(x1,z1): Coordinate 1, where user throwed eye of the ender
+* B(x2,z2): Coordinate 2, where user moved and recorded
+* C(x1+0.5,z1+0.5)=(a,b): Where eye of ender started flying
+* F: Where eye of ender hovered in the air
+
+F(x,z) is one of intersections between line AB and circle(center=C, radius=12)
+This can be calculated by solving following system of equations
+* z-z1=(z2-z1)/(x2-x1)*(x-x1): Line AB
+* (x-a)^2+(z-b)^2=12: Circle
+Solving this gives us two points, E and F
+By comparing dot product of vector AB, vector CE and dot product of vector AB/vector CF, we can find out which point is where eye of the ender hovered
+Stronghold is located on the half-line CF
+
+### Calculating standard error
+Program assumes 2 kinds of error affects prediction
+* Measurement error(σ1): How accurately user alligned crosshair
+  - This is affected by user defined "Allign error"(ε1)
+  - This is estimated σ1=arctan(ε1/12/16) (12: Distance eye flies, 16: Number of pixels in a block)
+* Precision error(σ2): How precisely the direction is measured
+  - In "Coord+Coord" mode, this is affected by distance between Coordinate 1 and Coordinate 2
+  - This is estimated σ2=arctan(0.01*sqrt(2)/distance)*0.2
+  - In "Corner+Facing" mode, this is affected by user defined "Pixel error"(ε1)
+  - This is estimated σ2=arctan(ε1/16/0.3) (0.3: Distance between the player and block which player is facing)
+* Combined error(σ) is calculated σ=sqrt(σ1^2+σ2^2)
