@@ -14,14 +14,6 @@ Stronghold location calculator for Minecraft Bedrock Edition
   - You can find this option in Settings → General → Creator → Creator Settings → Enable Copy Coordinate UI
 
 ### Eye Allginment
-Information in this section is by TyGer. (https://www.youtube.com/@tyger2k)
-Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
-
-![image](https://github.com/user-attachments/assets/c0b2e424-1f80-4423-bab7-6d209191a3bc)
-* Standard eye allginment
-
-![image](https://github.com/user-attachments/assets/d7e220e3-fbea-4911-8d82-cd0a2ba29577)
-* Allgin this (monitor) pixel in the crosshair to the right of the center (minecraft) pixel of the eye of ender
 
 ### Input
 #### Coord+Coord
@@ -52,4 +44,6 @@ Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
 ![이미지_2025-06-14_104357482 (2)](https://github.com/user-attachments/assets/5cfe22f3-b4e5-465d-91c4-99acb6891ae7)
 * Look Down straightly and allign your crosshair to edge of the block
 * Select whether your crosshair is facing X or Z direction
-* Count and write how many (Minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example.
+* Count and write how many (Minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example
+  - This value should be within 0 and 8
+* Press "ADD" button and probabilities will be updated
