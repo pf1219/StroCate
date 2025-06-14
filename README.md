@@ -88,4 +88,40 @@ Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
 #### Prob Within
 * Display probability that stronghold is within N chunks from candidate chunk
 * This is supported because in Bedrock Edition, most near stronghold generate under the village. If you can find village in render distance, you can easily locate stronghold with Sprinkz strategy
-* Recommended to set this value according to your render distance
+* It's recommended to set this value according to your render distance
+
+### Troubleshooting
+If calculator said 100% probability but stronghold wasn't there, consider..,
+* You were obstructed by terrain while measuring direction with "Coord+Coord" input method
+* Nearest stronghold was more than 4000 blocks away from (0,0)
+* Each eye directed diffrent stronghold
+* You set too low value in "allign errror" or "pixel error" (=Your measurement were not accurate enough)
+
+## Methodology
+### Calculating prior probability
+Simulated Bedrock Edition stronghold generation multiple times considering
+* Village grid
+  - Grid size is 34 chunks in x/z direction
+  - Village can generate in chunk 0~27 in each grid
+  - Village generate or doesn't generate according to biome, but that's difficult to simulate
+  - Assumed there's 26.7% chance of village generating in each grid
+* Scattered stronghold grid
+  - Grid size is 200 chunks in x/z direction
+  - Stronghold can generate in chunk 50~150 in each grid
+  - There;s 25% chance of stronghold generating in each grid
+* Village stronghold generation
+  - Simulated village stronghold generation based on Bedrockified by Earthcomputer
+  - https://github.com/Earthcomputer/bedrockified/blob/master/src/main/java/net/earthcomputer/bedrockified/BedrockStrongholdStructure.java
+
+Following information was gathered usingsimulation
+* How often nearest stronghold is village stronghold or scattered stronghold
+  - Nearest stronghold was village stronghold in 80.9% of the cases, scattered stronghold in 19.1% of the cases
+* How distance from (0,0) and probability of having a village stronghold correlated
+![Figure_1](https://github.com/user-attachments/assets/9d293f01-8ec5-4f7f-8da1-7a5675671380)
+  - X axis: Distance from (0,0) in chunks, Y axis: Relative probability of chunk having a village stronghold
+* How distance from (0,0) and probability of having a scattered stronghold correlated
+![Figure_2](https://github.com/user-attachments/assets/2594939e-aee5-4d31-9ce5-a5cd6043370c)
+  - X axis: Distance from (0,0) in chunks, Y axis: Relative probability of chunk having a scattered stronghold
+Estimated probability of each chunk(distance from (0,0) < 4000) having a stronghold based on simulation data
+
+
