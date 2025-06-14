@@ -5,8 +5,9 @@ Stronghold location calculator for Minecraft Bedrock Edition
 * Calculates probability of each chunk (distance from (0,0) < 4000) having stronghold
 * Uses prior probability using information about how strongholds generate in Bedrock Edition
 * Updates probability based on measurement using Bayes' theorem
-* Users can customize standard measurement error according to how accurate they are in measuring eye
+* Users can customize standard measurement error according to how accurate you are in measuring eye
 * Two input method available
+* Provides probability stronghold is within N chunks from each chunk
 
 ## How to Use
 ### Game Setting
@@ -29,7 +30,7 @@ Stronghold location calculator for Minecraft Bedrock Edition
 * Copy coordinate and press "PASTE" button next to "Coord 2"
 * Press "ADD" button and probabilities will be updated
 
-#### Coord+Facing
+#### Corner+Facing
 * Surround yourself with 4 blocks
 * Throw eye of ender and stand at the corner in that direction
 * Allign crosshair
@@ -47,3 +48,23 @@ Stronghold location calculator for Minecraft Bedrock Edition
 * Count and write how many (Minecraft) pixels the crosshair is from the vortex. Around 2.1 in this example
   - This value should be within 0 and 8
 * Press "ADD" button and probabilities will be updated
+
+### Settings
+#### Allign Error
+* Set this value based on how accurate you are in alligning crosshair accurately
+  - Smaller value → Assumes accurate crosshair allignment → More confident prediction
+  - Bigger value → Assumes less accurate crosshair allignment → Less confident prediction
+* General tip
+  - 0.03(Minimum): You can allign crosshair (monitor) pixel perfect always
+  - 0.3(Default): You can allign crosshair (minecraft) pixel perfect
+  - 1: You can allign crosshair within center third of the ender eye
+  - 4(Maximum): You can allign crosshair within ender eye
+
+#### Pixel Error
+* This setting matters only if your input mode is "Corner+Facing"
+* Set this value based on how accurate you can measure how many (minecraft) pixel the crosshair is from the vortex.
+  - Smaller value → Assumes accurate measurement → More confident prediction
+  - Bigger value → Assumes less accurate measurement → Less confident prediction
+* General tip
+  - 0.01(Minimum): You can count (monitor) pixels and write the value
+  - 
