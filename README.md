@@ -154,3 +154,25 @@ Program assumes 2 kinds of error affects prediction
   - In "Corner+Facing" mode, this is affected by user defined "Pixel error"(ε1)
   - This is estimated σ2=arctan(ε1/16/0.3) (0.3: Distance between the player and block which player is facing)
 * Combined error(σ) is calculated σ=sqrt(σ1^2+σ2^2)
+
+### Updating probability
+The posterior probability is proportional to the product of prior probability and likelihood
+* Posterior probability: The probability that a certain chunk contains the stronghold afte the new observation
+* Prior probability: The probability that a certain chunk contains the stronghold before considering the new observation
+* Likelihood: The probability of making the observation if the stronghold were located in that chunk
+
+In normal distribution with mean(μ) and standard deviation(σ), the probability density function is
+
+![image](https://github.com/user-attachments/assets/6dfeba82-db9d-4b86-8060-6d7ee3e7dc6b)
+
+![image](https://github.com/user-attachments/assets/4b4bbb81-6e7d-40bf-b3d3-8a491d815e09)
+
+Probability density function at x=A means relative likelihood of A getting sampled from this distribution
+
+If observed angle is θ and eye of ender started flying at C(a,b), likelihood in each chunk is calculated
+* Eye of ender points to (2,2) of stronghold chunk
+* If (2,2) of certain chunk is Sn(xn,zn), we can calculate direction of vector CSn=(xn-a,zn-b)
+* Calculate difference between two angles, Δθ
+* Likelihood is value of probability density function at x=Δθ, given μ=0, σ=combined error
+
+After iterating this process through all candidate chunks, probability is normalized so that it sum up to 1
