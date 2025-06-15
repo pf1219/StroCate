@@ -1,4 +1,4 @@
-# /StroCate
+# /StroCate: MCBE Stronghold Calculator
 Stronghold location calculator for Minecraft Bedrock Edition
 
 ## Features
