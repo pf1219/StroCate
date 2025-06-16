@@ -87,7 +87,7 @@ Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
  
 #### Prob Within
 * Display probability that stronghold is within N chunks from candidate chunk
-* This is supported because in Bedrock Edition, most near stronghold generate under the village. If you can find village in render distance, you can easily locate stronghold with Sprinkz strategy
+* This is supported because in Bedrock Edition, most near stronghold generate under the village. If you can find village within your render distance, you can easily locate stronghold with Sprinkz strategy
 * It's recommended to set this value according to your render distance
 
 ### Troubleshooting
@@ -113,7 +113,7 @@ Simulated Bedrock Edition stronghold generation multiple times considering
   - Simulated village stronghold generation based on Bedrockified by Earthcomputer
   - https://github.com/Earthcomputer/bedrockified/blob/master/src/main/java/net/earthcomputer/bedrockified/BedrockStrongholdStructure.java
 
-Following information was gathered usingsimulation
+Following information was gathered using simulation
 * How often nearest stronghold is village stronghold or scattered stronghold
   - Nearest stronghold was village stronghold in 80.9% of the cases, scattered stronghold in 19.1% of the cases
 * How distance from (0,0) and probability of having a village stronghold correlated
@@ -134,7 +134,7 @@ To determine the stronghold direction, we need to calculate the coordinates wher
 * A(x1,z1): Coordinate 1, where user threw eye of the ender
 * B(x2,z2): Coordinate 2, where user moved and recorded the second position
 * C(x1+0.5,z1+0.5)=(a,b): Where eye of ender starts flying
-* F(x,z): The point int the air where eye of ender hovers
+* F(x,z): The point in the air where eye of ender hovers
 
 F(x,z) is one of intersections between line AB and circle(center=C, radius=12)
 This can be calculated by solving following system of equations
