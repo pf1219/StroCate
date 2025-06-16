@@ -122,6 +122,7 @@ Following information was gathered usingsimulation
 * How distance from (0,0) and probability of having a scattered stronghold correlated
 ![Figure_2](https://github.com/user-attachments/assets/2594939e-aee5-4d31-9ce5-a5cd6043370c)
   - X axis: Distance from (0,0) in chunks, Y axis: Relative probability of chunk having a scattered stronghold
+
 Estimated probability of each chunk(distance from (0,0) < 4000) having a stronghold based on simulation data
 
 ### Calculating stronghold direction
