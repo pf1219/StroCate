@@ -23,6 +23,7 @@ Borrowed image from their video. (https://www.youtube.com/watch?v=ktuEf4qcdt8)
 
 ![image](https://github.com/user-attachments/assets/d7e220e3-fbea-4911-8d82-cd0a2ba29577)
 * Allgin this (monitor) pixel in the crosshair to the right of the center (minecraft) pixel of the eye of ender
+* This differs device to device. To find out accurate setup for your device, run command /tp @p ~ ~ ~ facing @e [type= Eye_of_Ender_signal] while ender eye is hovering
 
 ### Input
 #### Coord+Coord
